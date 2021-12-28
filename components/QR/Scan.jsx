@@ -2,9 +2,10 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import React, { useEffect, useState } from 'react'
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper';
+import qrmAxios from '../../qrmAxios';
 import Master from '../Master'
 
-export default function Scan() {
+export default function Scan({ navigation }) {
 
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
@@ -18,7 +19,17 @@ export default function Scan() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        qrmAxios.post(`/scan/`, {
+            qrcode: data,
+            userid: 1
+        }).then(response => {
+            console.log(response.data);
+            navigation.navigate("Location", {
+                data: response.data
+            })
+        }).catch(err=>{
+            console.log(err);
+        })
     };
 
     if (hasPermission === null) {
