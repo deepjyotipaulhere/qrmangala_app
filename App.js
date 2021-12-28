@@ -35,7 +35,7 @@ const registerForPushNotificationsAsync = async () => {
     }
     const token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
-    this.setState({ expoPushToken: token });
+	return token;
   } else {
     alert('Must use physical device for Push Notifications');
   }
@@ -71,14 +71,14 @@ const QRStackScreen = () => (
 );
 
 export default function App() {
-  const [expoPushToken, setExpoPushToken] = React.useState("");
+  const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
 
   useEffect(() => {
-    // registerForPushNotificationsAsync().then((token) => {
-    //   console.log(token);
-    //   setExpoPushToken(token);
-    // });
+    registerForPushNotificationsAsync().then((token) => {
+      console.log(token);
+      setExpoPushToken(token);
+    });
   }, []);
 
   return (
@@ -102,7 +102,7 @@ export default function App() {
           />
           <MainTab.Screen
             name="Settings"
-            component={QRStackScreen}
+            component={Home}
             options={{ tabBarIcon: "cogs", tabBarLabel: "Settings" }}
           />
         </MainTab.Navigator>
