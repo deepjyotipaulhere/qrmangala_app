@@ -10,6 +10,8 @@ import Constants from 'expo-constants';
 import QRHome from "./components/QR/Home";
 import Scan from "./components/QR/Scan";
 import Location from "./components/QR/Location";
+import Timeline from "./components/Timeline";
+import Contacts from "./components/Contacts";
 
 const theme = {
   ...DefaultTheme,
@@ -101,8 +103,13 @@ export default function App() {
             options={{ tabBarIcon: "qrcode", tabBarLabel: "QR Mangala" }}
           />
           <MainTab.Screen
+            name="Timeline"
+            component={Timeline}
+            options={{ tabBarIcon: "timeline-outline", tabBarLabel: "Timeline" }}
+          />
+          <MainTab.Screen
             name="Settings"
-            component={Home}
+            component={Contacts}
             options={{ tabBarIcon: "cogs", tabBarLabel: "Settings" }}
           />
         </MainTab.Navigator>

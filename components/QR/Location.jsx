@@ -62,7 +62,8 @@ export default function Location({ route, navigation }) {
                         title={item.name}
                         titleStyle={{ fontWeight: 'bold' }}
                         description={item.next.length && `${item.next.length} more places from here`}
-                        left={props => <List.Icon icon={item.icon || 'map-marker-right'} color={theme.colors.primary} />} />
+                        left={props => <List.Icon icon={item.icon || 'map-marker-right'} color={theme.colors.primary}
+                        />} />
                 )} />
         </Master>
     )
