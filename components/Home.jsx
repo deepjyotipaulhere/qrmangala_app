@@ -5,7 +5,7 @@ import * as Calendar from 'expo-calendar'
 import { Button, List, useTheme } from 'react-native-paper'
 import AnimatedLottieView from 'lottie-react-native'
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
     const theme = useTheme()
     const [calendarIDs, setCalendarIDs] = useState([])
     const [flightEvents, setFlightEvents] = useState([])
@@ -36,12 +36,16 @@ export default function Home({navigation}) {
             <List.Item title="Welcome" description="Deepjyoti PAUL" descriptionStyle={{ fontSize: 20, color: 'black', fontWeight: 'bold', textTransform: 'uppercase' }} />
             {
                 !flightEvents.length ? (
-                    <>
-                        <Text style={{textAlign:'center',fontSize:20}}>Ready to travel?</Text>
-                        <Text style={{textAlign:'center'}}>Let's get started</Text>
-                        <AnimatedLottieView source={require('../lottie/90770-traveller.json')} autoPlay loop resizeMode='contain' style={{ width: Dimensions.get('screen').width }} />
-                        <Button onPress={getEvents} mode='contained' style={{padding:10,margin:10,borderRadius:8}}>Sync my flights</Button>
-                    </>
+                    <View style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <Text style={{ textAlign: 'center', fontSize: 20 }}>Ready to travel?</Text>
+                        <Text style={{ textAlign: 'center' }}>Let's get started</Text>
+                        <AnimatedLottieView source={require('../lottie/90770-traveller.json')} autoPlay loop resizeMode='cover' style={{ width: Dimensions.get('screen').width / 1.8 }} />
+                        <Button onPress={getEvents} mode='contained' style={{ padding: 10, margin: 10, borderRadius: 8 }}>Sync my flights</Button>
+                    </View>
                 )
                     :
                     <>
@@ -49,7 +53,7 @@ export default function Home({navigation}) {
                         <FlatList data={flightEvents} keyExtractor={item => item.id} style={{
                             height: 200
                         }} renderItem={({ item }) => (
-                            <TouchableOpacity onPress={()=>navigation.navigate('QRMangala')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('QRMangala')}>
                                 <List.Item title={item.title} description={new Date(item.startDate).toDateString()} titleStyle={{
                                     fontWeight: 'bold'
                                 }} left={props => <List.Icon style={{ color: theme.colors.primary }} color={theme.colors.primary} icon="airplane" {...props} />}
