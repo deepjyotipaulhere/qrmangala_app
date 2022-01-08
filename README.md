@@ -1,5 +1,6 @@
 # QR Mangala
 A QR code based gamified hands-free travel experience
+
 Built with
 * React Native/Expo
 * React/NextJS
