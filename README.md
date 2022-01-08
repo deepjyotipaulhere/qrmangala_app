@@ -23,3 +23,6 @@ https://github.com/deepjyotipaulhere/qrmangala_web
 ### Backend
 Github repo link\
 https://github.com/deepjyotipaulhere/qrmangala_backend
+
+## Video Demo
+https://youtu.be/4uWcGo_MsZk
