@@ -1,7 +1,7 @@
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import React, { useEffect, useState } from 'react'
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
-import { Button } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import qrmAxios from '../../qrmAxios';
 import Master from '../Master'
 
@@ -19,15 +19,15 @@ export default function Scan({ navigation }) {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        qrmAxios.post(`/scan/`, {
+        console.log("Scanned");
+        qrmAxios.post('/scan/', {
             qrcode: data,
             userid: 1
         }).then(response => {
-            console.log(response.data);
             navigation.navigate("Location", {
                 data: response.data
             })
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err);
         })
     };
@@ -41,11 +41,12 @@ export default function Scan({ navigation }) {
 
     return (
         <Master title="Scan QR Code">
-            <BarCodeScanner
+            {!scanned ? <><BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFill}
             />
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>Point the camera to a QR Mangala code</Text>
+                <Text style={{ textAlign: 'center', fontSize: 16 }}>Point the camera to a QR Mangala code</Text>
+            </> : <ActivityIndicator animating={true} />}
         </Master>
     )
 }

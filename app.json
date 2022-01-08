@@ -23,7 +23,7 @@
       }
     },
     "android": {
-      "package":"com.bial.qrmangala",
+      "package": "com.bial.qrmangala",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -35,6 +35,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/deepjyotipaulhere/qrmangala_app"
   }
 }
